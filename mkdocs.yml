@@ -1,0 +1,10 @@
+site_name: "PDNS Manager"
+copyright: CC-BY-SA Lukas Metzger
+repo_url: "https://github.com/loewexy/pdns-manager"
+theme_dir: "theme"
+docs_dir: "content"
+pages:
+    - Home: "index.md"
+    - Getting Started: "quickstart.md"
+    - About: "about.md"
+
