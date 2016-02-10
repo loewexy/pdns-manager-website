@@ -19,7 +19,7 @@ database. The database is also used by Powerdns using the pdns-backend-mysql.
 
 ### Download the current Version of PDNS Manager
 
-[<button class="btn btn-success">Download v1.1.3</button>](download.md)
+[<button class="btn btn-success">Download</button>](download.md)
 
 ### Features
 

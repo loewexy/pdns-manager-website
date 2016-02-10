@@ -3,21 +3,106 @@ type: doc
 ## Getting started
 
 This page guides you through the installation of PDNS Manager and
-Powerdns as an authoritative nameserver on a Debian system.
+Powerdns as an authoritative nameserver on a Debian system. For other
+systems you may have to adjust some steps.
 
 ### Prerequisites
 
-In order to complete this tutorial you must fillfill 2 Prerequisites. 
+In order to complete this tutorial you must fullfill 2 prerequisites. 
 Both are very basic and if you want to setup a authoritative DNS server 
 you propably have no problems to fullfill them. If not ask the 
 internet, there are a lot of tutorials out there.
 
-Firstly have to know how to configure Apache that it delivers a page
-from a specific document root for a given hostname. The configuration of
-HTTPS for that hostname is not required although highly recommended in
-order to protect your sensitive data.
+Firstly have to know how to configure Apache or another PHP compatible
+Webserver that it delivers a page from a specific document root for a
+given hostname. The configuration of HTTPS for that hostname is not
+required although highly recommended in order to protect your sensitive
+data.
 
 Secondly you need a MySQL or Maria DB server and a new empty database 
-on it, prererably with separate user credentials only for the DNS 
+on it, preferably with separate user credentials only for the DNS 
 stuff.
 
+### Install PDNS Manager
+
+In order to install PDNS Manager go to [Downlad](download.md) and get 
+the latest stable Version. Unpack the archive and put the content in a 
+folder on your system. Configure your webserver to deliver those files 
+on a hostname of your choise.
+
+In the following steps I will asume that the hostname is
+"https://pdns.example.com".
+
+To start the installation open a browser and got to 
+"https://pdns.example.com/install.php".
+
+![Screenshot Installation](img/quickstart.md/screenshot_installer.png)
+
+Here you have to supply for the database:
+
+* Host
+* Username
+* Password
+* Database
+* Port
+
+Also you have to provide the username for the first administrative user 
+and and also his password.
+
+After you have completed the form press **Install**. After that you 
+should be redirected to the login page where you can login using the 
+username and password you provided earlier.
+
+### Install and configure Powerdns
+
+Install Powerdns and the MySQL backend from the package sources:
+```bash
+sudo apt-get install pdns-server pdns-backend-mysql
+```
+
+Afterwords open */etc/powerdns/pdns.conf* with an editor of your choise 
+and enter the following:
+```
+allow-axfr-ips=127.0.0.1 <ip of your secondary nameserver> 
+allow-recursion=127.0.0.1
+config-dir=/etc/powerdns
+daemon=yes
+disable-axfr=no
+guardian=yes
+local-address=0.0.0.0
+local-port=53
+master=yes
+module-dir=/usr/lib/x86_64-linux-gnu/pdns
+setgid=pdns
+setuid=pdns
+socket-dir=/var/run
+version-string=powerdns
+include-dir=/etc/powerdns/pdns.d
+```
+
+Replace &lt;ip of your secondary nameserver&gt; with the ip of your 
+secondary nameserver if it should get its data via AXFR, otherwise just 
+leave it out.
+
+Now you have to supply the configuration for the MySQL backend. 
+Therfore open */etc/powerdns/pdns.d/pdns.local.gmysql.conf* in the 
+editor of your choise and configure it as follows:
+```
+launch=gmysql
+
+gmysql-host=localhost
+gmysql-port=3306
+gmysql-dbname=pdns
+gmysql-user=pdns
+gmysql-password=pdns
+gmysql-dnssec=no
+
+```
+Replace the parameters with those matching your setup.
+
+Finally you can restart powerdns and it should be up and running.
+```
+sudo service pdns restart 
+```
+
+Have fun with your new DNS Server.

@@ -6,5 +6,6 @@ docs_dir: "content"
 pages:
     - Home: "index.md"
     - Getting Started: "quickstart.md"
+    - Download: "download.md"
     - About: "about.md"
 
