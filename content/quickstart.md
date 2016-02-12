@@ -23,6 +23,11 @@ Secondly you need a MySQL or Maria DB server and a new empty database
 on it, preferably with separate user credentials only for the DNS 
 stuff.
 
+Finally make shure that you have the *php5-mysqlnd* package installed:
+```
+sudo apt-get install php5-mysqlnd
+```
+
 ### Install PDNS Manager
 
 In order to install PDNS Manager go to [Downlad](download.md) and get 
