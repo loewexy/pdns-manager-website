@@ -8,55 +8,52 @@ systems you may have to adjust some steps.
 
 ### Prerequisites
 
-In order to complete this tutorial you must fullfill 2 prerequisites. 
-Both are very basic and if you want to setup a authoritative DNS server 
-you propably have no problems to fullfill them. If not ask the 
-internet, there are a lot of tutorials out there.
+In order to complete this tutorial, you must know how to:
 
-Firstly have to know how to configure Apache or another PHP compatible
-Webserver that it delivers a page from a specific document root for a
+1. Configure Apache or another PHP compatible
+Webserver so that it delivers a page from a specific document root for a
 given hostname. The configuration of HTTPS for that hostname is not
 required although highly recommended in order to protect your sensitive
 data.
 
-Secondly you need a MySQL or Maria DB server and a new empty database 
+2. Configure a MySQL or Maria DB server and a new empty database 
 on it, preferably with separate user credentials only for the DNS 
 stuff.
 
-Finally make shure that you have the *php5-mysqlnd* package installed:
+3. Make shure that you have the *php5-mysqlnd* package installed:
 ```
 sudo apt-get install php5-mysqlnd
 ```
 
 ### Install PDNS Manager
 
-In order to install PDNS Manager go to [Downlad](download.md) and get 
-the latest stable Version. Unpack the archive and put the content in a 
+In order to install PDNS Manager, go to [Download](download.md) and get 
+the latest stable version. Unpack the archive and put the content in a 
 folder on your system. Configure your webserver to deliver those files 
-on a hostname of your choise.
+on a hostname of your choice.
 
-In the following steps I will asume that the hostname is
+In the following steps I assume that the hostname is
 "https://pdns.example.com".
 
-To start the installation open a browser and got to 
+To start the installation, open a browser and navigate to 
 "https://pdns.example.com/install.php".
 
 ![Screenshot Installation](img/quickstart.md/screenshot_installer.png)
 
-Here you have to supply for the database:
+Here you have to supply the database credentials:
 
 * Host
 * Username
 * Password
-* Database
+* Database name
 * Port
 
-Also you have to provide the username for the first administrative user 
-and and also his password.
+You have to provide a username and password for the first administrative user
+of PDNS Manager.
 
-After you have completed the form press **Install**. After that you 
-should be redirected to the login page where you can login using the 
-username and password you provided earlier.
+After you have completed all necessary steps, press **Install**.
+When the installation finished, you will be redirected to the login page where
+you can now log in using the username and password you provided earlier.
 
 ### Install and configure Powerdns
 
@@ -65,7 +62,7 @@ Install Powerdns and the MySQL backend from the package sources:
 sudo apt-get install pdns-server pdns-backend-mysql
 ```
 
-Afterwords open */etc/powerdns/pdns.conf* with an editor of your choise 
+Afterwards open */etc/powerdns/pdns.conf* with an editor of your choice 
 and enter the following:
 ```
 allow-axfr-ips=127.0.0.1 <ip of your secondary nameserver> 
@@ -86,12 +83,13 @@ include-dir=/etc/powerdns/pdns.d
 ```
 
 Replace &lt;ip of your secondary nameserver&gt; with the ip of your 
-secondary nameserver if it should get its data via AXFR, otherwise just 
+secondary nameserver if it will get its data via AXFR, otherwise just 
 leave it out.
 
 Now you have to supply the configuration for the MySQL backend. 
-Therfore open */etc/powerdns/pdns.d/pdns.local.gmysql.conf* in the 
-editor of your choise and configure it as follows:
+Open */etc/powerdns/pdns.d/pdns.local.gmysql.conf* with an editor of
+your choice and configure it as follows:
+
 ```
 launch=gmysql
 
@@ -105,7 +103,7 @@ gmysql-dnssec=no
 ```
 Replace the parameters with those matching your setup.
 
-Finally you can restart powerdns and it should be up and running.
+You can now restart powerdns and it should be up and running.
 ```
 sudo service pdns restart 
 ```
