@@ -3,6 +3,7 @@ copyright: CC-BY-SA Lukas Metzger
 repo_url: "https://github.com/loewexy/pdns-manager"
 theme_dir: "theme"
 docs_dir: "content"
+site_favicon: "img/favicon.ico"
 pages:
     - Home: "index.md"
     - Getting Started: "quickstart.md"
