@@ -10,6 +10,7 @@ pages:
     - Documentation:
         - Add your first domain: "documentation/firstdomain.md"
         - Users: "documentation/users.md"
+        - API: "documentation/api.md"
     - Download: "download.md"
     - About: "about.md"
 
