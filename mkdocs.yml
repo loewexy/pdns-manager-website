@@ -7,6 +7,8 @@ site_favicon: "img/favicon.ico"
 pages:
     - Home: "index.md"
     - Getting Started: "quickstart.md"
+    - Documentation:
+        - Add your first domain: "documentation/firstdomain.md"
     - Download: "download.md"
     - About: "about.md"
 
