@@ -9,6 +9,7 @@ pages:
     - Getting Started: "quickstart.md"
     - Documentation:
         - Add your first domain: "documentation/firstdomain.md"
+        - Users: "documentation/users.md"
     - Download: "download.md"
     - About: "about.md"
 
