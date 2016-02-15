@@ -4,21 +4,21 @@ type: doc
 
 This guide will lead you through the creation of your first domain and 
 some basic records. To complete this tutorial you must be logged in as 
-administrator to PDNS Manager.
+an administrator to PDNS Manager.
 
 ### Add a new domain
 
 In PDNS Manager, go to *Domains*. Press the button *Add*.
 
 Insert your domain name, as well as the primary name server which is 
-most likely a full qualified domain name of your server. Also add the 
+most likely a fully qualified domain name of your server. Also add the 
 email address of the administrator of this zone.
 
 You can leave the remaining values at default.
 
 ![Screenshot](img/firstdomain.md/screenshot_1.png)
 
-Then press *Add* to confirm the changes. Afterwards you get redirected 
+Then press *Add* to confirm the changes. You will now be redirected 
 to the detail view of the domain.
 
 
@@ -30,7 +30,7 @@ require you to supply 2 name servers.
 
 To configure a NS record for the domain, leave the *Name* field blank
 as PDNS Manager will automatically append the master zone name to it.
-Set the type to *NS* and enter the name servers FQDN in the *Content*
+Set the type to *NS* and enter the name server´s FQDN in the *Content*
 field.
 
 ![Screenshot](img/firstdomain.md/screenshot_2.png)

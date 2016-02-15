@@ -16,11 +16,11 @@ an administrator.
 
 Obviously, to add a new user, you need to be logged in as administrator. 
 
-Then click in the main menu on *Users* and click the *Add* button.
+In the main menu, click *Users* and in the now opening window, click *Add*.
 
-Enter a username and password and repeate the latter. Finally, you can 
-choose whether the new user has administrative privileges or is a 
-ordinary user.
+Enter a username and password and repeat the latter. Finally, you can 
+choose whether the new user has administrative privileges or is just a
+user.
 
 Confirm your inputs and click *Add*. You get redirected to the edit 
 page for the new user. Here you can make your edits as described in the 

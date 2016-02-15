@@ -11,7 +11,7 @@ systems you may have to adjust some steps.
 In order to complete this tutorial, you must know how to:
 
 1. Configure Apache or another PHP compatible
-Webserver so that it delivers a page from a specific document root for a
+web server so that it delivers a page from a specific document root for a
 given hostname. The configuration of HTTPS for that hostname is not
 required although highly recommended in order to protect your sensitive
 data.
@@ -20,7 +20,7 @@ data.
 on it, preferably with separate user credentials only for the DNS 
 stuff.
 
-3. Make shure that you have the *php5-mysqlnd* package installed:
+3. Make sure that you have the *php5-mysqlnd* package installed:
 ```
 sudo apt-get install php5-mysqlnd
 ```
