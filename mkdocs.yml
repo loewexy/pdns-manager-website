@@ -1,6 +1,6 @@
 site_name: "PDNS Manager"
 copyright: CC-BY-SA Lukas Metzger
-repo_url: "https://github.com/loewexy/pdns-manager"
+repo_url: "https://github.com/loewexy/pdnsmanager"
 theme_dir: "theme"
 docs_dir: "content"
 site_favicon: "img/favicon.ico"
