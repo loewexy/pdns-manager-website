@@ -8,7 +8,7 @@ administrator to PDNS Manager.
 
 ### Add a new domain
 
-In PDNS Manager got to *Domains*. Press the button *Add*.
+In PDNS Manager, go to *Domains*. Press the button *Add*.
 
 Insert your domain name, as well as the primary name server which is 
 most likely a full qualified domain name of your server. Also add the 
@@ -36,7 +36,7 @@ field.
 ![Screenshot](img/firstdomain.md/screenshot_2.png)
 
 Do the same for the second, and if applicable more, NS records. The 
-result should look like the following obviously with your data.
+result should look like the following, but obviously with your data.
 
 ![Screenshot](img/firstdomain.md/screenshot_3.png)
 

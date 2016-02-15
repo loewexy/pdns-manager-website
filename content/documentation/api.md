@@ -3,41 +3,42 @@ type: doc
 ## API
 
 PDNS Manager features a powerful API which enables you to update 
-records pragmatically whilst also providing some helper functions.
+records pragmatically whilst providing some helper functions at the same time.
 
-This can be used for example to achieve a Dynamic DNS service
+This can be used for example to achieve a Dynamic DNS service.
 
 ### Update via GET request
 
 The most simple API is to update a record via a simple GET request. 
-Therefore you must create the record you with to update.
+Therefore you must create the record you wish to update.
 
-The next step is to enable remote access for that record. Therefore 
-click on the "share" symbol, the last icon in the record row.
+The next step is to enable remote access for that record. Therefore, 
+click on the "share" symbol, which is the last icon in the record row.
 
-Then click on add password. Enter a description for that API access and 
+Then click on *Add password*. Enter a description for that API access and 
 supply a password. Repeat the password and confirm it with *Add*.
 
 ![Screenshot](img/api.md/screenshot_1.png)
 
-Remember the ID of your new remote access you need it in the api call.
+Remember the ID of your new remote access as you will need it in the API call.
 
-Now everything is configured to update the record remotely, to do that 
+Now everything is configured to update the record remotely. To do so, 
 make a request to:
+
 ```markdown
 https://dns.example.com/api/remote.php?domain=<domain>&id=<id>&password=<pass>&content=<content>
 ```
 
-Where:
+With:
 
-* &lt;domain&gt;: is the complete name of your record
-* &lt;id&gt;: is the remote access id which you remember from above
-* &lt;pass&gt;: is the password you added
-* &lt;content&gt;: is the new content of your record
+* &lt;domain&gt;: beeing the complete name of your record
+* &lt;id&gt;: beeing the remote access id which you needed to remember from above
+* &lt;pass&gt;: beeing the password you added
+* &lt;content&gt;: beeing the new content of your record
 
 ### Post API with signature
 
-PDNS Manager also has a API which uses asymmetric cryptography as 
+PDNS Manager also has an API which uses asymmetric cryptography as 
 authentication method. This API is used via HTTP POST requests.
 
 A client for that API implemented in a simple bash script is available. 
@@ -45,7 +46,7 @@ The client is described first, afterwards the protocol is described.
 
 #### Using the client software
 
-To get the client you must have git installed. If this is not the case 
+To get the client, it is obligated to have git installed first. If this is not the case 
 you can do that for Debian using:
 
 ```bash
@@ -57,15 +58,15 @@ The client depends on jq and curl which can be installed as follows:
 sudo apt-get install jq curl
 ```
 
-Now you can clone the repository in a directory of your choice, and 
-change into the cloned repository.
+Now you can clone the repository into a directory of your choice, and 
+change to the cloned repository.
 
 ```bash
 git clone https://github.com/loewexy/pdns-client
 cd pdns-client
 ```
 
-In the next step you must generate a RSA keypair using:
+In the next step you have to generate a RSA keypair using:
 
 ```bash
 ./pdns-keygen
@@ -83,36 +84,36 @@ Copy the output to the clipboard. Now go to PDNS Manager and add the
 record you want to update. Click on the "share" symbol, the last icon in
 the record row.
 
-On the following page press *Add key*. Enter some description and paste 
+On the following page, press *Add key*. Enter some description and paste 
 the public key from the clipboard into the text field.
 
 Confirm your inputs with *Add*. Remember the ID which is assigned to 
 your new remote permission.
 
-Now back on your machine which should do the update you can call the 
+Now back on your machine which should do the update, you can call the 
 client with data of your choice like that:
 
 ```bash
 ./pdns-client -s https://dns.example.com/ -d <domain> -i <id> -c <content>
 ```
 
-Where:
+With:
 
-* &lt;domain&gt;: is the complete name of your record
-* &lt;id&gt;: is the remote access id which you remember from above
-* &lt;content&gt;: is the new content of your record
+* &lt;domain&gt;: beeing the complete name of your record
+* &lt;id&gt;: beeing the remote access id which you remember from above
+* &lt;content&gt;: beeing the new content of your record
 
 This should update the data as you requested.
 
 You can get more options of pdns-keygen and pdns-client through the -h 
-option, which will give you some hints what you can do.
+option, which will give you some hints about what you can do.
 
 #### API description
 
 The POST API is very simple. You need a RSA keypair and you must be 
 able to sign data with it.
 
-The first action you do is to send a JSON like the following as POST 
+The first action you need to do is to send a JSON like the following as POST 
 data to the URL *https://dns.example.com/api/remote.php?getNonce*.
 
 ```json
@@ -123,11 +124,11 @@ data to the URL *https://dns.example.com/api/remote.php?getNonce*.
 }
 ```
 
-Where:
+With:
 
-* domain: is the complete name of your record
-* id: is the remote access id which you remember from above
-* content: is the new content of your record
+* domain: beeing the complete name of your record
+* id: beeing the remote access id which you remember from above
+* content: beeing the new content of your record
 
 You get a JSON like the following:
 
@@ -140,7 +141,7 @@ You get a JSON like the following:
 Now you have to concatenate the domain, the id, the content and the 
 received nonce. Sign this data with SHA512 using your private key and 
 base64 encode the signature. Add the result to the first JSON you sent 
-like the following (signature is shortend for better readability):
+like the following (signature is shortened for better readability):
 
 ```json
 {
