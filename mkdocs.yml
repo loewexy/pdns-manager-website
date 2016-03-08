@@ -11,6 +11,7 @@ pages:
         - Add your first domain: "documentation/firstdomain.md"
         - Users: "documentation/users.md"
         - API: "documentation/api.md"
+        - Let's Encrypt: "documentation/letsencrypt.md"
     - Download: "download.md"
     - About: "about.md"
 
