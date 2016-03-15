@@ -110,6 +110,17 @@ CHALLENGETYPE="dns-01"
 HOOK=${BASEDIR}/../pdns-acme/pdns-acme
 ```
 
+Now, the domains.txt file must be created. This file contains the information
+which certificates letsencrypt.sh will be generating and trying to sign.
+The file looks as follows:
+
+```bash
+example.com www.example.com
+cloud.example.com
+```
+Where each line stands for one certificate. The first domain on the line will be used
+as common name of the certificate, all other domains will be used as alternate names.
+
 Afterwards run letsencrypt.sh to check whether everything works as 
 expected or - if not - open an Issue on github.
 
