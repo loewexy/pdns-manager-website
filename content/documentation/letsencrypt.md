@@ -2,19 +2,18 @@ type: doc
 
 ## Let's Encrypt
 
-PDNS Manager allows you to easily use the service of the complete automated 
+PDNS Manager allows you to easily use the service of the fully automated 
 CA [Let's Encrypt](https://letsencrypt.org) or any other ACME 
 compiliant CA by using the [letsencrypt.sh](https://github.com/lukas2511/letsencrypt.sh)
 client in combination with the PDNS Manager API.
 
-This Tutorial will guide you step by step to the setup. In repeats 
-partly the information in the API tutorial, it also assumes that you 
-have a running version of PDNS Manager up and running.
+This tutorial will guide you through the setup step by step. While the information is in parts
+redundant to the API tutorial, it also assumes that you 
+have PDNS Manager up and running.
 
 ### Getting required components
 
-The software we are using depends on the following tools beeing 
-installed.
+The software depends on the following tools:
 
 * jq
 * curl
@@ -27,7 +26,7 @@ On Debian you can get those using:
 sudo apt-get install openssl jq curl git
 ```
 
-Afterwords change into the Directory you want the tools located and 
+Afterwards change into the directory you want the tools located and 
 clone the following repositories.
 
 ```bash
@@ -37,7 +36,7 @@ git clone https://github.com/lukas2511/letsencrypt.sh
 ```
 
 ### Configure pdns-client
-Then change in the directory of pdns-client, generate a keypair and 
+Then change to the directory of pdns-client, generate a keypair and 
 output the public key:
 
 ```bash
@@ -46,34 +45,34 @@ cd pdns-client
 cat pdns.public.pem
 ```
 
-Copy the resulting public key to your clipboard.
+Copy the generated public key to your clipboard.
 
-In the next step open a browser and login to your PDNS Manager 
+In the next step, open a browser and login to your PDNS Manager 
 instance. Add a record to your domain with the name 
 **_acme-challenge.&lt;yourdomain&gt;**, type **TXT** and content **none**. 
 Use a Priority of 0 and a TTL of 60.
 
-Afterwords click on to share icon which is the last icon in the row of 
+Afterwards, click on to share icon which is the last icon in the row of 
 the record. Click on *Add Key*. Enter a description like **ACME** and 
 paste the public key from your clipboard into the field. Confirm with 
-*Add*. Remember the ID of the permission you have added. You can find 
-it in the left table.
+*Add*. You now need to remember the ID of the permission you have added, which is
+displayed in the table on the left.
 
 ### Configure pdns-acme
 
-Change in the directory of pdns-acme and copy the example config.
+Change to the directory of pdns-acme and copy the example config.
 
 ```
 cd ../pdns-acme
 cp pdns-acme.json.example pdns-acme.json
 ```
 
-Open the file **pdns-acme.json** in an editor of your choise. In the 
+Open the file **pdns-acme.json** with an editor of your choice. In the 
 **config** section adjust the path of your PDNS Manager installation 
 and also the deploy-wait value. The deploy-wait parameter determines 
 how long the script should wait for the DNS servers to get the right 
 results. This value depends on your nameserver setup. The default of 
-300 should do well for your most setups. Afterwords the section looks 
+300 should do well for most setups. After these changes, the section looks 
 like that:
 
 ```json
@@ -111,20 +110,19 @@ CHALLENGETYPE="dns-01"
 HOOK=${BASEDIR}/../pdns-acme/pdns-acme
 ```
 
-Afterwords run letsencrypt.sh to check weather everything works as 
-expected.
+Afterwards run letsencrypt.sh to check whether everything works as 
+expected or - if not - open an Issue on github.
 
 ```bash
 ./letsencrypt.sh -c
 ```
 
-If everything is okay you can find your new certificate in the 
+If everything is okay, you can find your new certificate in the 
 directory certs.
 
 ### Automate renewal
-
-The automaically renew the certs add an entry to **/etc/crontab** as 
-the following:
+For automatic renewal of your certificates, add an entry to **/etc/crontab** as 
+follows:
 
 ```txt
 0 2     * * *   root    /root/letsencrypt.sh/letsencrypt.sh -c
