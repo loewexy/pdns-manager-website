@@ -7,7 +7,9 @@ records pragmatically whilst providing some helper functions at the same time.
 
 This can be used for example to achieve a Dynamic DNS service.
 
-### Update via GET request
+### GET API
+
+#### Update via GET request
 
 The most simple API is to update a record via a simple GET request. 
 Therefore you must create the record you wish to update.
@@ -26,7 +28,7 @@ Now everything is configured to update the record remotely. To do so,
 make a request to:
 
 ```markdown
-https://dns.example.com/api/remote.php?domain=<domain>&id=<id>&password=<pass>&content=<content>
+https://dns.example.com/api/remote.php?action=updateRecord&domain=<domain>&id=<id>&password=<pass>&content=<content>
 ```
 
 With:
@@ -35,6 +37,23 @@ With:
 * &lt;id&gt;: beeing the remote access id which you needed to remember from above
 * &lt;pass&gt;: beeing the password you added
 * &lt;content&gt;: beeing the new content of your record
+
+#### Get IP via API
+
+You can read your client IP address, via the action **getIp** using a get
+request as the following:
+
+```markdown
+https://dns.example.com/api/remote.php?action=getIp
+```
+
+You get a JSON like the following:
+
+```json
+{
+    "ip": "12.34.56.78"
+}
+```
 
 ### Post API with signature
 
