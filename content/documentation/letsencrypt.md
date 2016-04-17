@@ -92,15 +92,13 @@ the remaining domain entrys.
 
 ### Configure letsencrypt.sh
 
-Change to the directory of letsencrypt.sh and copy the example config.
+Change to the directory of letsencrypt.sh.
 
 ```bash
 cd ../letsencrypt.sh
-cp config.sh.example config.sh
 ```
 
-Open config.sh in your favourite editor. Uncomment and adjust the 
-settings below.
+Create config.sh with the following content.
 
 ```bash
 # Make letsencrypt.sh use the dns-01 challenge
