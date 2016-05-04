@@ -3,7 +3,7 @@ type: full
 ## Welcome to PDNS Manager
 
 PDNS Manager is a simple yet powerful administration tool for the
-Powerdns authoritative nameserver. It currently only supports master zones.
+Powerdns authoritative nameserver. It currently supports master and native zones.
 
 PNDS Manager was developed from scratch to achieve a user-friendly
 and pretty looking interface.
@@ -22,7 +22,7 @@ database. The database is also used by Powerdns using the pdns-backend-mysql.
 
 ### Features
 
-* Full support for master zones
+* Full support for master and native zones
 * Simple interface for SOA record management
 * Multi user capability and permission management
 * Support for all valid DNS record types
