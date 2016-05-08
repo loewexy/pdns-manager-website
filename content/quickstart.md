@@ -20,9 +20,11 @@ data.
 on it, preferably with separate user credentials only for the DNS 
 stuff.
 
-3. Make sure that you have the *php5-mysqlnd* package installed:
+3. Make sure that you have the *php5-mysqlnd* package installed and enabled:
 ```
 sudo apt-get install php5-mysqlnd
+sudo php5enmod mysqlnd
+sudo service apache2 restart
 ```
 
 ### Install PDNS Manager
