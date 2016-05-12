@@ -21,18 +21,19 @@ on it, preferably with separate user credentials only for the DNS
 stuff.
 
 3. Make sure that you have MySQL native driver installed and enabled:
-  * PHP 5.X: 
-  ```
-  sudo apt-get install php5-mysqlnd
-  sudo php5enmod mysqlnd
-  sudo service apache2 restart
-  ```
-  * PHP 7:
-  ```
-  sudo apt-get install php7.0-mysql
-  phpenmod -v 7.0 -s ALL mysql # should be auto enabled by above
-  sudo service apache2 restart
-  ```
+
+PHP 5.X: 
+```
+sudo apt-get install php5-mysqlnd
+sudo php5enmod mysqlnd
+sudo service apache2 restart
+```
+PHP 7:
+```
+sudo apt-get install php7.0-mysql
+phpenmod -v 7.0 -s ALL mysql # should be auto enabled by above
+sudo service apache2 restart
+```
 
 ### Install PDNS Manager
 
