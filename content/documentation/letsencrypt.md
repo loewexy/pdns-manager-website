@@ -98,7 +98,7 @@ Change to the directory of letsencrypt.sh.
 cd ../letsencrypt.sh
 ```
 
-Create config.sh with the following content.
+Create a file named config with the following content.
 
 ```bash
 # Make letsencrypt.sh use the dns-01 challenge
