@@ -12,6 +12,7 @@ pages:
         - Users: "documentation/users.md"
         - API: "documentation/api.md"
         - Let's Encrypt: "documentation/letsencrypt.md"
+        - Configuration: "documentation/configuration.md"
     - Download: "download.md"
     - About: "about.md"
 
