@@ -6,11 +6,21 @@ Download the current release of PDNS Manager. It is recommended to use
 the current stable version, but you can also download the current 
 development release from git. Older releases can be found below.
 
-[<button class="btn btn-success piwik_download">Stable v1.2.0</button>](files/pdns-manager-1.2.0.tar.gz)
+[<button class="btn btn-success piwik_download">Stable v1.2.1</button>](files/pdns-manager-1.2.1.tar.gz)
 [<button class="btn btn-danger piwik_download">Development</button>](https://github.com/loewexy/pdnsmanager/archive/master.zip)
 
 
 ### Changelog
+
+#### 1.2.1
+##### Improvements
+* Added pagination
+
+##### Bugfixes
+* Compatibility with SQL92
+* Fixed regex for mail addresses
+
+[<p class="piwik_download">Download v1.2.1</p>](files/pdns-manager-1.2.1.tar.gz)
 
 #### 1.2.0
 ##### Improvements
