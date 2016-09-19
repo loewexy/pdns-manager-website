@@ -4,7 +4,7 @@ type: doc
 
 PDNS Manager allows you to easily use the service of the fully automated 
 CA [Let's Encrypt](https://letsencrypt.org) or any other ACME 
-compiliant CA by using the [letsencrypt.sh](https://github.com/lukas2511/letsencrypt.sh)
+compiliant CA by using the [dehydrated](https://github.com/lukas2511/dehydrated)
 client in combination with the PDNS Manager API.
 
 This tutorial will guide you through the setup step by step. While the information is in parts
@@ -32,7 +32,7 @@ clone the following repositories.
 ```bash
 git clone https://github.com/loewexy/pdns-client
 git clone https://github.com/loewexy/pdns-acme
-git clone https://github.com/lukas2511/letsencrypt.sh
+git clone https://github.com/lukas2511/dehydrated
 ```
 
 ### Configure pdns-client
@@ -90,18 +90,18 @@ commands in an array. Set the **id** property to the value you remember
 from before. Adjust the domain name to your situation. You can remove 
 the remaining domain entrys.
 
-### Configure letsencrypt.sh
+### Configure dehydrated
 
-Change to the directory of letsencrypt.sh.
+Change to the directory of dehydrated.
 
 ```bash
-cd ../letsencrypt.sh
+cd ../dehydrated
 ```
 
 Create a file named config with the following content.
 
 ```bash
-# Make letsencrypt.sh use the dns-01 challenge
+# Make dehydrated use the dns-01 challenge
 CHALLENGETYPE="dns-01"
 
 # Supply the path to the pdns-acme hook script
@@ -109,7 +109,7 @@ HOOK=${BASEDIR}/../pdns-acme/pdns-acme
 ```
 
 Now, the domains.txt file must be created. This file contains the information
-which certificates letsencrypt.sh will be generating and trying to sign.
+which certificates dehydrated will be generating and trying to sign.
 The file looks as follows:
 
 ```bash
@@ -119,11 +119,11 @@ cloud.example.com
 Where each line stands for one certificate. The first domain on the line will be used
 as common name of the certificate, all other domains will be used as alternate names.
 
-Afterwards run letsencrypt.sh to check whether everything works as 
+Afterwards run dehydrated to check whether everything works as 
 expected or - if not - open an Issue on github.
 
 ```bash
-./letsencrypt.sh -c
+./dehydrated -c
 ```
 
 If everything is okay, you can find your new certificate in the 
@@ -134,6 +134,6 @@ For automatic renewal of your certificates, add an entry to **/etc/crontab** as
 follows:
 
 ```txt
-0 2     * * *   root    /root/letsencrypt.sh/letsencrypt.sh -c
+0 2     * * *   root    /root/dehydrated/dehydrated -c
 ```
 
