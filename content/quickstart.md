@@ -8,7 +8,7 @@ systems you may have to adjust some steps.
 
 ### Prerequisites
 
-In order to complete this tutorial, you must know how to:
+In order to complete this tutorial, you have to:
 
 1. Configure Apache or another PHP compatible
 web server so that it delivers a page from a specific document root for a
@@ -20,7 +20,9 @@ data.
 on it, preferably with separate user credentials only for the DNS 
 stuff.
 
-3. Make sure that you have MySQL native driver installed and enabled:
+3. Use PHP in version 5.5 or above.
+
+4. Make sure that you have MySQL native driver installed and enabled:
 
 PHP 5.X: 
 ```
