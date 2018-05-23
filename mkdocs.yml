@@ -14,5 +14,5 @@ pages:
         - Let's Encrypt: "documentation/letsencrypt.md"
         - Configuration: "documentation/configuration.md"
     - Download: "download.md"
-    - About: "about.md"
+    - About & Privacy: "about.md"
 
