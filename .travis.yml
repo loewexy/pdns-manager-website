@@ -4,7 +4,7 @@ language: python
 python:
     - "3.6"
 before_install:
-    - sudo pip install mkdocs==0.15.3
+    - pip install mkdocs==0.15.3
 install: true
 script:
     - .travis/build.sh
