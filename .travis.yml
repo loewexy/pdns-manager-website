@@ -8,3 +8,8 @@ before_install:
 install: true
 script:
     - .travis/build.sh
+deploy:
+    provider: script
+    script: .travis/deploy.sh
+    on:
+        branch: master
