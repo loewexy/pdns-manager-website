@@ -7,5 +7,7 @@ fi
 
 cd site/
 if ! tar -czf ../website.tar.gz *
+then
     exit 2
 fi
+
