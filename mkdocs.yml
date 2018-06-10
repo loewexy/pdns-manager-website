@@ -13,6 +13,7 @@ pages:
         - API: "documentation/api.md"
         - Let's Encrypt: "documentation/letsencrypt.md"
         - Configuration: "documentation/configuration.md"
+        - Upgrading from v1: "documentation/upgrading-v1.md"
     - Download: "download.md"
     - About & Privacy: "about.md"
 

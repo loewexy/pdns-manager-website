@@ -3,7 +3,7 @@ type: full
 ## Welcome to PDNS Manager
 
 PDNS Manager is a simple yet powerful administration tool for the
-Powerdns authoritative nameserver. It currently supports master and native zones.
+Powerdns authoritative nameserver. It supports master, native and slave zones.
 
 PNDS Manager was developed from scratch to achieve a user-friendly
 and pretty looking interface.
@@ -12,9 +12,9 @@ PDNS Manager also features a powerful API to set records programatically.
 This can be used e.g. for a dynamic DNS service, but also to obtain certificates
 from [Let's Encrypt](https://letsencrypt.org/) via the dns-01 challenge.
 
-PDNS Manager is written in PHP using [Bootstrap](http://getbootstrap.com/)
-and [jQuery](http://jquery.com/). The backend uses a MySQL or Maria DB
-database. The database is also used by Powerdns using the pdns-backend-mysql.
+The Backend of PDNS Manager is written in PHP using Slimphp. The backend uses a MySQL or Maria DB
+database. The database is also used by Powerdns using the pdns-backend-mysql. The Frontend is
+developed using Angular and Bootstrap.
 
 ### Download the current Version of PDNS Manager
 
@@ -22,11 +22,13 @@ database. The database is also used by Powerdns using the pdns-backend-mysql.
 
 ### Features
 
-* Full support for master and native zones
+* Full support for master, slave and native zones
+* Flexible plugin interface for authentication and session storage
 * Simple interface for SOA record management
 * Multi user capability and permission management
 * Support for all valid DNS record types
 * Powerful API for various applications
+* Completely documented API between frontend and backend
 * Licensed under Apache 2.0
 
 ---

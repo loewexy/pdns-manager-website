@@ -3,52 +3,61 @@ type: doc
 ## Getting started
 
 This page guides you through the installation of PDNS Manager and
-Powerdns as an authoritative nameserver on a Debian system. For other
+Powerdns as an authoritative nameserver on a Debian-based system. For other
 systems you may have to adjust some steps.
 
 ### Prerequisites
 
 In order to complete this tutorial, you have to:
 
-1. Configure Apache or another PHP compatible
-web server so that it delivers a page from a specific document root for a
-given hostname. The configuration of HTTPS for that hostname is not
-required although highly recommended in order to protect your sensitive
-data.
-
-2. Configure a MySQL or Maria DB server and a new empty database 
+1. Configure a MySQL or Maria DB server and a new empty database 
 on it, preferably with separate user credentials only for the DNS 
 stuff.
 
-3. Use PHP in version 5.5 or above.
+2. Install Apache
 
-4. Make sure that you have MySQL native driver installed and enabled:
+3. Use PHP in version 7.1 or above
 
-PHP 5.X: 
-```
-sudo apt-get install php5-mysqlnd
-sudo php5enmod mysqlnd
-sudo service apache2 restart
-```
-PHP 7:
-```
-sudo apt-get install php7.0-mysql
-phpenmod -v 7.0 -s ALL mysql # should be auto enabled by above
-sudo service apache2 restart
-```
+4. Make sure that you have PHP MySQL native driver installed and enabled
 
 ### Install PDNS Manager
 
 In order to install PDNS Manager, go to [Download](download.md) and get 
 the latest stable version. Unpack the archive and put the content in a 
-folder on your system. Configure your webserver to deliver those files 
-on a hostname of your choice.
+folder on your system (in the tutorial we will use /var/www/html). Configure
+an Apache VHost with a config like the following:
 
-In the following steps I assume that the hostname is
-"https://pdns.example.com".
+```
+<VirtualHost _default_:443>
+    ServerAdmin webmaster@localhost
+
+    ServerName pdns.example.com
+
+    DocumentRoot /var/www/html/frontend
+
+    RewriteEngine On
+    RewriteRule ^index\.html$ - [L]
+    RewriteCond %{DOCUMENT_ROOT}%{REQUEST_FILENAME} !-f
+    RewriteCond %{DOCUMENT_ROOT}%{REQUEST_FILENAME} !-d
+    RewriteRule !^/api/\.* /index.html [L]
+
+    Alias /api /var/www/html/backend/public
+    <Directory /var/www/html/backend/public>
+        RewriteEngine On
+        RewriteCond %{REQUEST_FILENAME} !-f
+        RewriteCond %{REQUEST_FILENAME} !-d
+        RewriteRule ^ index.php [QSA,L]
+    </Directory>
+
+</VirtualHost>
+```
+
+In here we assume that the hostname is "https://pdns.example.com".
+
+TODO: GO on here
 
 To start the installation, open a browser and navigate to 
-"https://pdns.example.com/install.php".
+"https://pdns.example.com/setup".
 
 ![Screenshot Installation](img/quickstart.md/screenshot_installer.png)
 
