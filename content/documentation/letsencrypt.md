@@ -7,10 +7,6 @@ CA [Let's Encrypt](https://letsencrypt.org) or any other ACME
 compiliant CA by using the [dehydrated](https://github.com/lukas2511/dehydrated)
 client in combination with the PDNS Manager API.
 
-This tutorial will guide you through the setup step by step. While the information is in parts
-redundant to the API tutorial, it also assumes that you 
-have PDNS Manager up and running.
-
 ### Getting required components
 
 The software depends on the following tools:
@@ -27,43 +23,41 @@ sudo apt-get install openssl jq curl git
 ```
 
 Afterwards change into the directory you want the tools located and 
-clone the following repositories.
+issue the following command.
 
 ```bash
-git clone https://github.com/loewexy/pdns-client
-git clone https://github.com/loewexy/pdns-acme
-git clone https://github.com/lukas2511/dehydrated
+git clone --recurse-submodules https://github.com/loewexy/pdns-acme
 ```
 
-### Configure pdns-client
-Then change to the directory of pdns-client, generate a keypair and 
-output the public key:
+### Initializing the Software
+Switch to the directory of pdns-acme and run
 
 ```bash
-cd pdns-client
-./pdns-keygen
-cat pdns.public.pem
+./pdns-acme init
 ```
 
-Copy the generated public key to your clipboard.
+### Add domain to use
+Issue
+```bash
+./pdns-acme key
+```
+and copy the output to your clipboard.
 
 In the next step, open a browser and login to your PDNS Manager 
 instance. Add a record to your domain with the name 
 **_acme-challenge.&lt;yourdomain&gt;**, type **TXT** and content **none**. 
 Use a Priority of 0 and a TTL of 60.
 
-Afterwards, click on to share icon which is the last icon in the row of 
-the record. Click on *Add Key*. Enter a description like **ACME** and 
+Afterwards, click on to key icon which is the last icon in the row of 
+the record. Click on *Key*. Enter a description like **ACME** and 
 paste the public key from your clipboard into the field. Confirm with 
-*Add*. You now need to remember the ID of the permission you have added, which is
-displayed in the table on the left.
+*Save*.
 
 ### Configure pdns-acme
 
-Change to the directory of pdns-acme and copy the example config.
+Copy the example config.
 
 ```
-cd ../pdns-acme
 cp pdns-acme.json.example pdns-acme.json
 ```
 
@@ -72,68 +66,53 @@ Open the file **pdns-acme.json** with an editor of your choice. In the
 and also the deploy-wait value. The deploy-wait parameter determines 
 how long the script should wait for the DNS servers to get the right 
 results. This value depends on your nameserver setup. The default of 
-300 should do well for most setups. After these changes, the section looks 
+120 should do well for most setups. After these changes, the section looks 
 like that:
 
 ```json
 "config": {
         "server": "https://<yourdomain>/",
-        "pdns-client": "../pdns-client/pdns-client",
         "deploy-wait": 300
     }
 ```
 
-Now look at the examples of the domains. They show you how you can add 
-hook commands when a new certificate has been deployed, such as 
-restarting Apache or anything else. You can add none, one or multiple 
-commands in an array. Set the **id** property to the value you remember 
-from before. Adjust the domain name to your situation. You can remove 
-the remaining domain entrys.
+### Add domain names to the config
 
-### Configure dehydrated
+In the section domains you must add an entry for every name you want
+to have on any certificate. It is, as can seen from the example, a
+dictionary mapping domain names to the record ids of the matching
+_acme-challenge. record.
 
-Change to the directory of dehydrated.
+### Configure certificates
 
+In the section certs you can configure which certificates are generated.
+It is a dictionary where the key is the primary ceritificate name, the value
+is a dictionary which can have two properties. "alias" stores an array of
+string with alternative domain names. "hook" can be a string or array of
+strings, with commands executed if the certificate was changed. This can be
+used e.g. to restart a webserver using the certificate.
+
+### Run pdns-acme
+
+Now you can issue
 ```bash
-cd ../dehydrated
+./pdna-acme cron
 ```
-
-Create a file named config with the following content.
-
-```bash
-# Make dehydrated use the dns-01 challenge
-CHALLENGETYPE="dns-01"
-
-# Supply the path to the pdns-acme hook script
-HOOK=${BASEDIR}/../pdns-acme/pdns-acme
-```
-
-Now, the domains.txt file must be created. This file contains the information
-which certificates dehydrated will be generating and trying to sign.
-The file looks as follows:
-
-```bash
-example.com www.example.com
-cloud.example.com
-```
-Where each line stands for one certificate. The first domain on the line will be used
-as common name of the certificate, all other domains will be used as alternate names.
-
-Afterwards run dehydrated to check whether everything works as 
-expected or - if not - open an Issue on github.
-
-```bash
-./dehydrated -c
-```
-
-If everything is okay, you can find your new certificate in the 
-directory certs.
+to start the process. If there are no errors you will have a directory
+"certs" with your certificats.
 
 ### Automate renewal
 For automatic renewal of your certificates, add an entry to **/etc/crontab** as 
 follows:
 
 ```txt
-0 2     * * *   root    /root/dehydrated/dehydrated -c
+0 2     * * *   root    /root/pdns-acme/pdns-acme cron
 ```
+
+### Advanced options
+
+You can use other options which dehydrated supports. Those can be looked
+up in its [documentation](https://github.com/lukas2511/dehydrated). Config
+options ca be put in a file called "dehydrated.config" in the pdns-acme directory.
+Its content will be appended to the config generated by pdns-acme.
 
