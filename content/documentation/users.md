@@ -16,13 +16,13 @@ an administrator.
 
 Obviously, to add a new user, you need to be logged in as administrator. 
 
-In the main menu, click *Users* and in the now opening window, click *Add*.
+In the main menu, click *Users* and in the now opening window, click *Add user*.
 
 Enter a username and password and repeat the latter. Finally, you can 
 choose whether the new user has administrative privileges or is just a
 user.
 
-Confirm your inputs and click *Add*. You get redirected to the edit 
+Confirm your inputs and click *Save*. You get redirected to the edit 
 page for the new user. Here you can make your edits as described in the 
 next paragraph.
 
@@ -44,8 +44,6 @@ that are currently not assigned to the user. Click on the one you want to
 add. If you want to, you can repeat that step for more domains.
 
 ![Screenshot](img/users.md/screenshot_1.png)
-
-Finally, press *Add* and your selection will be stored.
 
 #### Remove permissions
 

@@ -54,8 +54,6 @@ an Apache VHost with a config like the following:
 
 In here we assume that the hostname is "https://pdns.example.com".
 
-TODO: GO on here
-
 To start the installation, open a browser and navigate to 
 "https://pdns.example.com/setup".
 
@@ -72,7 +70,7 @@ Here you have to supply the database credentials:
 You have to provide a username and password for the first administrative user
 of PDNS Manager.
 
-After you have completed all necessary steps, press **Install**.
+After you have completed all necessary steps, press **Setup**.
 When the installation finished, you will be redirected to the login page where
 you can now log in using the username and password you provided earlier.
 
@@ -95,6 +93,7 @@ guardian=yes
 local-address=0.0.0.0
 local-port=53
 master=yes
+slave=yes
 module-dir=/usr/lib/x86_64-linux-gnu/pdns
 setgid=pdns
 setuid=pdns

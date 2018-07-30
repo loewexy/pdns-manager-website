@@ -8,7 +8,9 @@ an administrator to PDNS Manager.
 
 ### Add a new domain
 
-In PDNS Manager, go to *Domains*. Press the button *Add*.
+In PDNS Manager, go to *Domains*. Press the button *MASTER*, *NATIVE*
+or *SLAVE*, depending on the type you want to use. We assume a master
+or native zone in the following.
 
 Insert your domain name, as well as the primary name server which is 
 most likely a fully qualified domain name of your server. Also add the 
@@ -18,7 +20,7 @@ You can leave the remaining values at default.
 
 ![Screenshot](img/firstdomain.md/screenshot_1.png)
 
-Then press *Add* to confirm the changes. You will now be redirected 
+Then press *Save* to confirm the changes. You will now be redirected 
 to the detail view of the domain.
 
 
