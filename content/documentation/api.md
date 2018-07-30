@@ -15,36 +15,40 @@ The most simple API is to update a record via a simple GET request.
 Therefore you must create the record you wish to update.
 
 The next step is to enable remote access for that record. Therefore, 
-click on the "share" symbol, which is the last icon in the record row.
+click on the key symbol, which is the last icon in the record row.
 
-Then click on *Add password*. Enter a description for that API access and 
+Then click on *Password*. Enter a description for that API access and 
 supply a password. Repeat the password and confirm it with *Add*.
 
 ![Screenshot](img/api.md/screenshot_1.png)
-
-Remember the ID of your new remote access as you will need it in the API call.
 
 Now everything is configured to update the record remotely. To do so, 
 make a request to:
 
 ```markdown
-https://dns.example.com/api/remote.php?action=updateRecord&domain=<domain>&id=<id>&password=<pass>&content=<content>
+https://dns.example.com/remote/updatepw?record=<recordId>&password=<pass>&content=<content>
 ```
 
-With:
+| parameter | explanation |
+| --- | --- |
+| record | The id of the record to update |
+| content | The new content |
+| password | The password used for authentication |
 
-* &lt;domain&gt;: beeing the complete name of your record
-* &lt;id&gt;: beeing the remote access id which you needed to remember from above
-* &lt;pass&gt;: beeing the password you added
-* &lt;content&gt;: beeing the new content of your record
+| code | result |
+| --- | --- |
+| 204 | Everything okay, therefore content is empty |
+| 403 | No permission for the given record |
+| 404 | Record does not exist |
+| 422 | One of the required arguments is missing |
 
 #### Get IP via API
 
-You can read your client IP address, via the action **getIp** using a get
+You can read your client IP address using a get
 request as the following:
 
 ```markdown
-https://dns.example.com/api/remote.php?action=getIp
+https://dns.example.com/remote/ip
 ```
 
 You get a JSON like the following:
@@ -52,6 +56,23 @@ You get a JSON like the following:
 ```json
 {
     "ip": "12.34.56.78"
+}
+```
+
+#### Get servertime via API
+
+You can read the server time using a get
+request as the following:
+
+```markdown
+https://dns.example.com/remote/servertime
+```
+
+You get a JSON like the following:
+
+```json
+{
+    "time": 1525006738
 }
 ```
 
@@ -100,26 +121,24 @@ cat pdns.public.pem
 ```
 
 Copy the output to the clipboard. Now go to PDNS Manager and add the 
-record you want to update. Click on the "share" symbol, the last icon in
+record you want to update. Click on the key symbol, the last icon in
 the record row.
 
-On the following page, press *Add key*. Enter some description and paste 
+On the following page, press *Key*. Enter some description and paste 
 the public key from the clipboard into the text field.
 
-Confirm your inputs with *Add*. Remember the ID which is assigned to 
-your new remote permission.
+Confirm your inputs with *Save*.
 
 Now back on your machine which should do the update, you can call the 
 client with data of your choice like that:
 
 ```bash
-./pdns-client -s https://dns.example.com/ -d <domain> -i <id> -c <content>
+./pdns-client -s https://dns.example.com/ -i <recordId> -c <content>
 ```
 
 With:
 
-* &lt;domain&gt;: beeing the complete name of your record
-* &lt;id&gt;: beeing the remote access id which you remember from above
+* &lt;recordId&gt;: beeing the id of the record to update
 * &lt;content&gt;: beeing the new content of your record
 
 This should update the data as you requested.
@@ -132,44 +151,32 @@ option, which will give you some hints about what you can do.
 The POST API is very simple. You need a RSA keypair and you must be 
 able to sign data with it.
 
-The first action you need to do is to send a JSON like the following as POST 
-data to the URL *https://dns.example.com/api/remote.php?getNonce*.
+To obtain the signature you must have a Unix-Timestamp with
+sufficient precision. You can obtain it from the server with
+the `GET /remote/servertime` API. Concatenate the record id
+(as string), the content and the timestamp (also as string).
+Sign this data with SHA512 using your private key and base64
+encode the signature.
 
 ```json
 {
-    domain="test.example.com",
-    id=1,
-    content="1.2.3.4"
+  "record": 5,
+  "content": "1.2.3.4",
+  "time": 1525009108,
+  "signature": "YIRJppYL55dOuC[...]u0sXYgClo="
 }
 ```
 
-With:
+| parameter | explanation |
+| --- | --- |
+| record | The id of the record to update |
+| content | The new content |
+| time | The unix timestamp used in the signature |
+| signature | The signature |
 
-* domain: beeing the complete name of your record
-* id: beeing the remote access id which you remember from above
-* content: beeing the new content of your record
-
-You get a JSON like the following:
-
-```json
-{
-    nonce: "SnXuDd0CKwayBjwiWyAUWCcqG1B/4bO+QSJK6sQ1ehU="
-}
-```
-
-Now you have to concatenate the domain, the id, the content and the 
-received nonce. Sign this data with SHA512 using your private key and 
-base64 encode the signature. Add the result to the first JSON you sent 
-like the following (signature is shortened for better readability):
-
-```json
-{
-    domain="test.example.com",
-    id=1,
-    content="1.2.3.4",
-    signature="YIRJppYL55dOuC[...]u0sXYgClo="
-}
-```
-
-Sent this as POST data to
-*https://dns.example.com/api/remote.php?updateRecord*.
+| code | result |
+| --- | --- |
+| 204 | Everything okay, therefore content is empty |
+| 403 | No permission for the given record |
+| 404 | Record does not exist |
+| 422 | One of the required arguments is missing |
