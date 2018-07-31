@@ -2,40 +2,110 @@ type: doc
 
 ## Configuration
 
-PDNS Manager has two configuration files: *config/config-default.php* and *config/config-user.php*.
-Default values are saved in *config-default.php*, you should not edit these values as they will get
-overwritten if you update PDNS Manager.
+PDNS Manager has a configuration file in `backend/config/ConfigUser.php`. All
+options can be changed here. PDNS Manager uses for defaults for all options if
+no overriding is done in `ConfigUser.php`. The following page describes which
+options can be used, each of them adds an entry to the config dictionary.
 
-Instead, you can edit these settings in *config-user.php* which overrides the settings made in
-*config-default.php*.
-
-### config-default.php
-
-
+### DB Options
 ```php
-//Database settings
-$config['db_host'] = "localhost";
-$config['db_user'] = "root";
-$config['db_password'] = "";
-$config['db_port'] = 3306;
-$config['db_name'] = "pdnsmanager";
-
-//Remote update
-$config['nonce_lifetime'] = 15;
-
-//Number of rows in domain overview
-$config['domain_rows'] = 20;
+return [
+    ...
+    'db' => [
+        'host' => 'localhost',
+        'user' => 'user',
+        'password' => 'password',
+        'dbname' => 'pdnsmanager',
+        'port' => 3306
+    ]
+    ...
+];
 ```
+This should be self explanatory. It stores the credentials for the database. It
+is required to be present. It is the only required config entry.
 
-### config-user.php
-When you install PDNS Manager, the installation script will save your database connection parameters
-in this file.
+### Logging
+```php
+return [
+    ...
+    'logging' => [
+        'level' => 'info',
+        'path' => ''
+    ]
+    ...
+];
+```
+This configures how PDNS Manager logs events.
 
-The *db_* named values specify the database connection. 
+If `path` is an empty string the
+messages end up in the PHP error log. Otherwise the string describes the path
+to the logfile, make shure the webserver has permissions on this file and that
+it is not served publicly, as it may contain sensitive data.
 
-The *nonce_lifetime* value specifies how long a request may take to be signed and sent back to the server. If your requests
-take really long - maybe you are using a micro controller which takes some time to sign the request or your connection is 
-really wonky - try increasing this value.
+`level` sets the lowest level for which events are recorded in the log. Possible values are
+in ascending order `debug, info, notice, warning, error, critical`.
 
-The *domain_rows* value is the number of domains that is displayed per page when you open the domain overview. Set this to
-whatever you want, depending on the speed of your connection and how fast you want your results displayed.
+### Sesionstorage
+```php
+return [
+    ...
+    'sessionstorage' => [
+        'plugin' => 'apcu',
+        'timeout' => 3600,
+        'config' => null
+    ]
+    ...
+];
+```
+This configures how sessions are hadled in PDNS Manager.
+
+`plugin` choses the plugin used as session storage backend, currently only
+`apcu` which uses the PHP-APCU extension is available.
+
+`timeout` configures how long a session without any further action will stay
+active. The value is an integer in seonds.
+
+`config` may store additional information used by the sessionstorage plugin.
+
+### Authentication
+```php
+return [
+    ...
+    'authentication' => [
+        'native' => [
+            'plugin' => 'native',
+            'prefix' => 'default',
+            'config' => null
+        ]
+    ]
+    ...
+];
+```
+This configures how PDNS Manager authenticates users. For details see
+[Authentication](configuration_authentication.md).
+
+### Remote API Timestampwindow
+```php
+return [
+    ...
+    'remote' => [
+        'timestampWindow' => 15
+    ]
+    ...
+];
+```
+This configures options for the remote API. Currently the only field is
+`timestampWindow` which configures how much the timestamp in the
+signature of the post API may differ from the system time, while still
+beeing valid.
+
+### Trusted Proxys
+```php
+return [
+    ...
+    'proxys' => ['10.0.0.1']
+    ...
+];
+```
+This array should contain the ip addresses of proxys before the server
+which serves PDNS Manager. They are allowed to set `X-Forwarded-For` headers.
