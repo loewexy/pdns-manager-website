@@ -20,6 +20,11 @@ developed using Angular and Bootstrap.
 
 [<button class="btn btn-success">Download</button>](download.md)
 
+### Upgrading from 1.x
+
+As PDNS Manager 2.0 is a complete rewrite there are some steps required
+to upgrade an existing installation to 2.0. See [Upgrading from v1](documentation/upgrading-v1.md).
+
 ### Features
 
 * Full support for master, slave and native zones

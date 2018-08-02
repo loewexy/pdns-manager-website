@@ -10,15 +10,15 @@ systems you may have to adjust some steps.
 
 In order to complete this tutorial, you have to:
 
-1. Configure a MySQL or Maria DB server and a new empty database 
+ * Configure a MySQL or Maria DB server and a new empty database 
 on it, preferably with separate user credentials only for the DNS 
 stuff.
 
-2. Install Apache
+ * Install Apache
 
-3. Use PHP in version 7.1 or above
+ * Use PHP in version 7.1 or above
 
-4. Make sure that you have PHP MySQL native driver installed and enabled
+ * Make sure that you have PHP MySQL native driver installed and enabled
 
 ### Install PDNS Manager
 
