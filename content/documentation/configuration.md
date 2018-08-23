@@ -1,5 +1,3 @@
-type: doc
-
 ## Configuration
 
 PDNS Manager has a configuration file in `backend/config/ConfigUser.php`. All

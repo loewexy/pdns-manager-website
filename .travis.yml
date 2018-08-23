@@ -2,9 +2,10 @@ sudo: required
 dist: trusty
 language: python
 python:
-    - "3.6"
+    - "2.7"
 before_install:
-    - pip install mkdocs==0.15.3
+    - pip install mkdocs
+    - pip install mkdocs-bootswatch
 install: true
 script:
     - .travis/build.sh

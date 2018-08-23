@@ -1,5 +1,3 @@
-type: doc
-
 ## Users
 
 PDNS manager has a very basic concept of users with two permission 

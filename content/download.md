@@ -1,4 +1,4 @@
-type: full
+template: full.html
 
 ## Download
 

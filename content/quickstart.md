@@ -1,5 +1,3 @@
-type: doc
-
 ## Getting started
 
 This page guides you through the installation of PDNS Manager and

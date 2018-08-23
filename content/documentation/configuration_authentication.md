@@ -1,5 +1,3 @@
-type: doc
-
 ## Configuration - Authentication
 
 PDNS Manager features a plugin system to support different authentication

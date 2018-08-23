@@ -1,5 +1,3 @@
-type: doc
-
 ## Upgrading from v1.x
 
 As PDNS Manager 2.0 is a complete rewrite there are some steps required

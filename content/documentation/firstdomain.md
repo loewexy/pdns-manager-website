@@ -1,5 +1,3 @@
-type: doc
-
 ## Add your first domain
 
 This guide will lead you through the creation of your first domain and 

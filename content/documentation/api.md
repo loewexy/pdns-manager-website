@@ -1,5 +1,3 @@
-type: doc
-
 ## API
 
 PDNS Manager features a powerful API which enables you to update 

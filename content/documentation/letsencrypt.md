@@ -1,5 +1,3 @@
-type: doc
-
 ## Let's Encrypt
 
 PDNS Manager allows you to easily use the service of the fully automated 
