@@ -8,20 +8,20 @@ to upgrade an existing installation to 2.0.
  * Update your existing installation to v1.2.1 (while this is not strictly
  required, it tends to cause less problems on upgrade)
 
- * Make shure to use PHP in version 7.1 or above.
+ * Make sure to use PHP in version 7.1 or above.
 
- * Make shure that PHP APCu extension is installed
+ * Make sure that PHP APCu extension is installed
 
 ### Replace PDNS Manager
 
 Replace your current installation with the content of the PDNS Manager
 2.0 archive.
- 
+
 ### Configure Apache
 
 Adjust your Apache VHost configuration to look like
-the following.
- 
+the following:
+
 ```
 <VirtualHost _default_:443>
     ServerAdmin webmaster@localhost
@@ -50,7 +50,7 @@ the following.
 ### Configure PDNS Manager
 
 Create the file `backend/config/ConfigUser.php` like the following
-with the correct credentials for your database.
+with the correct credentials for your database:
 
 ```php
 <?php

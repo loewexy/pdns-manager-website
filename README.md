@@ -11,4 +11,4 @@ mkdocs build
 ```
 
 ## Contribute
-If you want to improve the content of the website, feel free to create a pull request or open a issue.
+If you want to improve the content of the website, feel free to create a pull request or open an issue.

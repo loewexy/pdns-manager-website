@@ -1,26 +1,26 @@
 ## API
 
-PDNS Manager features a powerful API which enables you to update 
+PDNS Manager features a powerful API, which enables you to update
 records pragmatically whilst providing some helper functions at the same time.
 
-This can be used for example to achieve a Dynamic DNS service.
+This can be used, for example, to achieve a Dynamic DNS service.
 
 ### GET API
 
 #### Update via GET request
 
-The most simple API is to update a record via a simple GET request. 
-Therefore you must create the record you wish to update.
+The most simple API is to update a record via a simple GET request.
+Therefore, you must create the record you wish to update.
 
-The next step is to enable remote access for that record. Therefore, 
+The next step is to enable remote access for that record. Therefore,
 click on the key symbol, which is the last icon in the record row.
 
-Then click on *Password*. Enter a description for that API access and 
+Then click on *Password*. Enter a description for that API access and
 supply a password. Repeat the password and confirm it with *Add*.
 
 ![Screenshot](img/api.md/screenshot_1.png)
 
-Now everything is configured to update the record remotely. To do so, 
+Now everything is configured to update the record remotely. To do so,
 make a request to:
 
 ```markdown
@@ -42,7 +42,7 @@ https://dns.example.com/remote/updatepw?record=<recordId>&password=<pass>&conten
 
 #### Get IP via API
 
-You can read your client IP address using a get
+You can read your client IP address using a GET
 request as the following:
 
 ```markdown
@@ -59,14 +59,14 @@ You get a JSON like the following:
 
 #### Get servertime via API
 
-You can read the server time using a get
+You can read the server time using a GET
 request as the following:
 
 ```markdown
 https://dns.example.com/remote/servertime
 ```
 
-You get a JSON like the following:
+You receive a JSON like the following:
 
 ```json
 {
@@ -76,28 +76,29 @@ You get a JSON like the following:
 
 ### Post API with signature
 
-PDNS Manager also has an API which uses asymmetric cryptography as 
+PDNS Manager also has an API, which uses asymmetric cryptography as
 authentication method. This API is used via HTTP POST requests.
 
-A client for that API implemented in a simple bash script is available. 
+
+A client for that API implemented in a simple bash script is available.
 The client is described first, afterwards the protocol is described.
 
 #### Using the client software
 
-To get the client, it is obligated to have git installed first. If this is not the case 
+To get the client, it is obligated to have git installed first. If this is not the case
 you can do that for Debian using:
 
 ```bash
 sudo apt-get install git
 ```
 
-The client depends on jq and curl which can be installed as follows:
+The client depends on jq and curl, which can be installed as follows:
 ```bash
 sudo apt-get install jq curl
 ```
 
-Now you can clone the repository into a directory of your choice, and 
-change to the cloned repository.
+Now you can clone the repository into a directory of your choice, and
+change your path to the cloned repository.
 
 ```bash
 git clone https://github.com/loewexy/pdns-client
@@ -118,17 +119,17 @@ Get the public key using cat:
 cat pdns.public.pem
 ```
 
-Copy the output to the clipboard. Now go to PDNS Manager and add the 
+Copy the output to the clipboard. Now go to PDNS Manager and add the
 record you want to update. Click on the key symbol, the last icon in
 the record row.
 
-On the following page, press *Key*. Enter some description and paste 
+On the following page, press *Key*. Enter some description and paste
 the public key from the clipboard into the text field.
 
 Confirm your inputs with *Save*.
 
-Now back on your machine which should do the update, you can call the 
-client with data of your choice like that:
+Now, back on your local machine, you can call the
+client with data of your choice like the following:
 
 ```bash
 ./pdns-client -s https://dns.example.com/ -i <recordId> -c <content>
@@ -136,17 +137,17 @@ client with data of your choice like that:
 
 With:
 
-* &lt;recordId&gt;: beeing the id of the record to update
-* &lt;content&gt;: beeing the new content of your record
+* &lt;recordId&gt;: being the id of the record to update
+* &lt;content&gt;: being the new content of your record
 
-This should update the data as you requested.
+This should update the data you requested.
 
-You can get more options of pdns-keygen and pdns-client through the -h 
+You can get more options of pdns-keygen and pdns-client through the -h
 option, which will give you some hints about what you can do.
 
 #### API description
 
-The POST API is very simple. You need a RSA keypair and you must be 
+The POST API is very simple. You need a RSA keypair and you must be
 able to sign data with it.
 
 To obtain the signature you must have a Unix-Timestamp with

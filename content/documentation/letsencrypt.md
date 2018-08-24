@@ -1,7 +1,7 @@
 ## Let's Encrypt
 
-PDNS Manager allows you to easily use the service of the fully automated 
-CA [Let's Encrypt](https://letsencrypt.org) or any other ACME 
+PDNS Manager allows you to easily use the service of the fully automated
+CA [Let's Encrypt](https://letsencrypt.org) or any other ACME
 compiliant CA by using the [dehydrated](https://github.com/lukas2511/dehydrated)
 client in combination with the PDNS Manager API.
 
@@ -14,58 +14,58 @@ The software depends on the following tools:
 * openssl
 * git
 
-On Debian you can get those using:
+On Debian you can install those using:
 
 ```bash
 sudo apt-get install openssl jq curl git
 ```
 
-Afterwards change into the directory you want the tools located and 
-issue the following command.
+Afterwards, change into the directory you want the tools located at and
+issue the following command:
 
 ```bash
 git clone --recurse-submodules https://github.com/loewexy/pdns-acme
 ```
 
 ### Initializing the Software
-Switch to the directory of pdns-acme and run
+Switch to the directory of pdns-acme and run:
 
 ```bash
 ./pdns-acme init
 ```
 
 ### Add domain to use
-Issue
+Issue:
 ```bash
 ./pdns-acme key
 ```
 and copy the output to your clipboard.
 
-In the next step, open a browser and login to your PDNS Manager 
-instance. Add a record to your domain with the name 
-**_acme-challenge.&lt;yourdomain&gt;**, type **TXT** and content **none**. 
+In the next step, open a browser and login to your PDNS Manager
+instance. Add a record to your domain with the name
+**_acme-challenge.&lt;yourdomain&gt;**, type **TXT** and content **none**.
 Use a Priority of 0 and a TTL of 60.
 
-Afterwards, click on to key icon which is the last icon in the row of 
-the record. Click on *Key*. Enter a description like **ACME** and 
-paste the public key from your clipboard into the field. Confirm with 
+Afterwards, click on key icon, which is the last icon in the row of
+the record. Click on *Key*. Enter a description like **ACME** and
+paste the public key from your clipboard into the field. Confirm with
 *Save*.
 
 ### Configure pdns-acme
 
-Copy the example config.
+Copy the example configuration:
 
 ```
 cp pdns-acme.json.example pdns-acme.json
 ```
 
-Open the file **pdns-acme.json** with an editor of your choice. In the 
-**config** section adjust the path of your PDNS Manager installation 
-and also the deploy-wait value. The deploy-wait parameter determines 
-how long the script should wait for the DNS servers to get the right 
-results. This value depends on your nameserver setup. The default of 
-120 should do well for most setups. After these changes, the section looks 
-like that:
+Open the file **pdns-acme.json** with an editor of your choice. In the
+**config** section adjust the path of your PDNS Manager installation
+and the deploy-wait value. The deploy-wait parameter determines
+how long the script should wait for the DNS servers to get the right
+results. This value depends on your nameserver setup. The default of
+120 should do well for most setups. After these changes, the section looks
+like the following:
 
 ```json
 "config": {
@@ -77,7 +77,7 @@ like that:
 ### Add domain names to the config
 
 In the section domains you must add an entry for every name you want
-to have on any certificate. It is, as can seen from the example, a
+to have on any certificate. It is, as can be seen from the example, a
 dictionary mapping domain names to the record ids of the matching
 _acme-challenge. record.
 
@@ -85,8 +85,8 @@ _acme-challenge. record.
 
 In the section certs you can configure which certificates are generated.
 It is a dictionary where the key is the primary ceritificate name, the value
-is a dictionary which can have two properties. "alias" stores an array of
-string with alternative domain names. "hook" can be a string or array of
+is a dictionary, which can have two properties. "alias" stores an array of
+strings with alternative domain names. "hook" can be a string or array of
 strings, with commands executed if the certificate was changed. This can be
 used e.g. to restart a webserver using the certificate.
 
@@ -97,10 +97,10 @@ Now you can issue
 ./pdna-acme cron
 ```
 to start the process. If there are no errors you will have a directory
-"certs" with your certificats.
+"certs" with your certificates.
 
 ### Automate renewal
-For automatic renewal of your certificates, add an entry to **/etc/crontab** as 
+For automatic renewal of your certificates, add an entry to **/etc/crontab** as
 follows:
 
 ```txt
@@ -109,8 +109,7 @@ follows:
 
 ### Advanced options
 
-You can use other options which dehydrated supports. Those can be looked
+You can use other options, which dehydrated supports. Those can be looked
 up in its [documentation](https://github.com/lukas2511/dehydrated). Config
-options ca be put in a file called "dehydrated.config" in the pdns-acme directory.
+options can be put in a file called "dehydrated.config" in the pdns-acme directory.
 Its content will be appended to the config generated by pdns-acme.
-

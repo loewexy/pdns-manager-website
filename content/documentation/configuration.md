@@ -1,7 +1,7 @@
 ## Configuration
 
 PDNS Manager has a configuration file in `backend/config/ConfigUser.php`. All
-options can be changed here. PDNS Manager uses for defaults for all options if
+options can be changed here. PDNS Manager uses for defaults for all options, if
 no overriding is done in `ConfigUser.php`. The following page describes which
 options can be used, each of them adds an entry to the config dictionary.
 
@@ -37,13 +37,13 @@ This configures how PDNS Manager logs events.
 
 If `path` is an empty string the
 messages end up in the PHP error log. Otherwise the string describes the path
-to the logfile, make shure the webserver has permissions on this file and that
+to the logfile, make sure the webserver has permissions on this file and that
 it is not served publicly, as it may contain sensitive data.
 
 `level` sets the lowest level for which events are recorded in the log. Possible values are
 in ascending order `debug, info, notice, warning, error, critical`.
 
-### Sesionstorage
+### Session storage
 ```php
 return [
     ...
@@ -55,15 +55,15 @@ return [
     ...
 ];
 ```
-This configures how sessions are hadled in PDNS Manager.
+This configures how sessions are handeled in PDNS Manager.
 
-`plugin` choses the plugin used as session storage backend, currently only
-`apcu` which uses the PHP-APCU extension is available.
+`plugin` chooses the plugin used as session storage backend, currently only
+`apcu`, which uses the available PHP-APCU extension.
 
 `timeout` configures how long a session without any further action will stay
-active. The value is an integer in seonds.
+active. The value is an integer in seconds.
 
-`config` may store additional information used by the sessionstorage plugin.
+`config` may store additional information used by the session storage plugin.
 
 ### Authentication
 ```php
@@ -93,9 +93,9 @@ return [
 ];
 ```
 This configures options for the remote API. Currently the only field is
-`timestampWindow` which configures how much the timestamp in the
+`timestampWindow`, which configures how much the timestamp in the
 signature of the post API may differ from the system time, while still
-beeing valid.
+being valid.
 
 ### Trusted Proxys
 ```php

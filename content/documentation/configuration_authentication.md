@@ -1,13 +1,13 @@
 ## Configuration - Authentication
 
 PDNS Manager features a plugin system to support different authentication
-sources. It also allows multiple sources to be active at the same time.
+sources. It allows multiple sources to be active at the same time.
 The distinction between the sources is done by prefixing the username.
-So for example the username `foo` will use the default source, while
+So, for example, the username `foo` will use the default source, while
 `ldap/foo` will use the source with prefix `ldap`. Only the username
 part will be passed to the plugin.
 
-An example of the authentication configuration could be.
+An example of the authentication configuration could be:
 ```php
 return [
     ...
@@ -36,18 +36,18 @@ authentication source, otherwise all permissions for those users
 will be lost. `native` is the reserved identifier for PDNS Managers
 internal authentication added by the setup assistant.
 
-The value has 3 properties
- 
+The value has three properties:
+
 `plugin` the name of the authentication plugin to use (see rest of the
 page for available options)
 
 `prefix` the prefix used to choose the source, if no prefix is provided
 `default` will be used. This can be used to allow users to login without
-providing a prefix if they use some sort of default authentication source.
+providing a prefix, if they use some sort of default authentication source.
 This setting can be changed at any time.
 
-`config` this can contain plugin specific configuration data. For
-information what this should be for a specific plugin see below.
+`config` this can contain plugin specific configuration data.
+What this should be for, a specific plugin is provided below.
 
 ### native Plugin
 This plugin uses users directly in PDNS Managers database. They can
