@@ -24,7 +24,7 @@ Now everything is configured to update the record remotely. To do so,
 make a request to:
 
 ```markdown
-https://dns.example.com/remote/updatepw?record=<recordId>&password=<pass>&content=<content>
+GET https://dns.example.com/api/v1/remote/updatepw?record=<recordId>&password=<pass>&content=<content>
 ```
 
 | parameter | explanation |
@@ -46,7 +46,7 @@ You can read your client IP address using a GET
 request as the following:
 
 ```markdown
-https://dns.example.com/remote/ip
+GET https://dns.example.com/api/v1/remote/ip
 ```
 
 You get a JSON like the following:
@@ -63,7 +63,7 @@ You can read the server time using a GET
 request as the following:
 
 ```markdown
-https://dns.example.com/remote/servertime
+GET https://dns.example.com/api/v1/remote/servertime
 ```
 
 You receive a JSON like the following:
@@ -152,10 +152,14 @@ able to sign data with it.
 
 To obtain the signature you must have a Unix-Timestamp with
 sufficient precision. You can obtain it from the server with
-the `GET /remote/servertime` API. Concatenate the record id
+the `GET /api/v1/remote/servertime` API. Concatenate the record id
 (as string), the content and the timestamp (also as string).
 Sign this data with SHA512 using your private key and base64
 encode the signature.
+
+```markdown
+POST https://dns.example.com/api/v1/remote/updatekey
+```
 
 ```json
 {

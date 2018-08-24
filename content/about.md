@@ -83,7 +83,7 @@ Germany
 
 Email: developer@lukas-metzger.com
 
-Website: https://pdnsmanager.lmitsystems.de
+Website: https://pdnsmanager.org
 
 ### 3. Collection of general data and information
 
