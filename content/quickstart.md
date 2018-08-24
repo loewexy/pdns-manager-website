@@ -8,8 +8,8 @@ systems you may have to adjust some steps.
 
 In order to complete this tutorial, you have to:
 
- * Configure a MySQL or Maria DB server and a new empty database 
-on it, preferably with separate user credentials only for the DNS 
+ * Configure a MySQL or Maria DB server and a new empty database
+on it, preferably with separate user credentials only for the DNS
 stuff.
 
  * Install Apache
@@ -20,8 +20,8 @@ stuff.
 
 ### Install PDNS Manager
 
-In order to install PDNS Manager, go to [Download](download.md) and get 
-the latest stable version. Unpack the archive and put the content in a 
+In order to install PDNS Manager, go to [Download](download.md) and get
+the latest stable version. Unpack the archive and put the content in a
 folder on your system (in the tutorial we will use /var/www/html). Configure
 an Apache VHost with a config like the following:
 
@@ -50,14 +50,14 @@ an Apache VHost with a config like the following:
 </VirtualHost>
 ```
 
-In here we assume that the hostname is "https://pdns.example.com".
+Here, we assume that the hostname is "https://pdns.example.com".
 
-To start the installation, open a browser and navigate to 
+To start the installation, open a browser and navigate to
 "https://pdns.example.com/setup".
 
 ![Screenshot Installation](img/quickstart.md/screenshot_installer.png)
 
-Here you have to supply the database credentials:
+Here, you have to supply the database credentials:
 
 * Host
 * Username
@@ -65,11 +65,11 @@ Here you have to supply the database credentials:
 * Database name
 * Port
 
-You have to provide a username and password for the first administrative user
+Provide a username and password for the first administrative user
 of PDNS Manager.
 
 After you have completed all necessary steps, press **Setup**.
-When the installation finished, you will be redirected to the login page where
+Once the installation finished, you will be redirected to the login page where
 you can now log in using the username and password you provided earlier.
 
 ### Install and configure Powerdns
@@ -79,10 +79,10 @@ Install Powerdns and the MySQL backend from the package sources:
 sudo apt-get install pdns-server pdns-backend-mysql
 ```
 
-Afterwards open */etc/powerdns/pdns.conf* with an editor of your choice 
+Afterwards open */etc/powerdns/pdns.conf* with an editor of your choice
 and enter the following:
 ```
-allow-axfr-ips=127.0.0.1 <ip of your secondary nameserver> 
+allow-axfr-ips=127.0.0.1 <ip of your secondary nameserver>
 allow-recursion=127.0.0.1
 config-dir=/etc/powerdns
 daemon=yes
@@ -100,11 +100,11 @@ version-string=powerdns
 include-dir=/etc/powerdns/pdns.d
 ```
 
-Replace &lt;ip of your secondary nameserver&gt; with the ip of your 
-secondary nameserver if it will get its data via AXFR, otherwise just 
+Replace &lt;ip of your secondary nameserver&gt; with the ip of your
+secondary nameserver if it will get its data via AXFR, otherwise just
 leave it out.
 
-Now you have to supply the configuration for the MySQL backend. 
+Now you have to supply the configuration for the MySQL backend.
 Open */etc/powerdns/pdns.d/pdns.local.gmysql.conf* with an editor of
 your choice and configure it as follows:
 
@@ -123,7 +123,7 @@ Replace the parameters with those matching your setup.
 
 You can now restart powerdns and it should be up and running.
 ```
-sudo service pdns restart 
+sudo service pdns restart
 ```
 
 Have fun with your new DNS Server.
