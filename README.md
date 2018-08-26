@@ -1,9 +1,9 @@
 # PDNS Manager
 
 [PDNS Manager](https://pdnsmanager.lmitsystems.de) is a simple yet powerful free administration tool for the
-Powerdns authoritative nameserver. It currently only supports master zones.
+Powerdns authoritative nameserver.
 
-This is the repository of the website at [https://pdnsmanager.lmitsystems.de](https://pdnsmanager.lmitsystems.de). It is built using [MkDocs](http://www.mkdocs.org/).
+This is the repository of the website at [https://pdnsmanager.org](https://pdnsmanager.org). It is built using [MkDocs](http://www.mkdocs.org/).
 
 To build the website it is required to have MkDocs installed. Then change into the repository folder and issue:
 ```
