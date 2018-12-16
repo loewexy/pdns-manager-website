@@ -50,6 +50,35 @@ an Apache VHost with a config like the following:
 </VirtualHost>
 ```
 
+Nginx config
+
+```
+server {
+    listen       443;
+    server_name  pdns.example.com;
+    root /var/www/html/frontend;
+
+location / {
+    try_files $uri $uri/ /index.html;
+}
+
+location ~ ^/api/(.*)$ {
+    try_files $1 /@php-pdns;
+}
+
+location @php-pdns {
+    try_files $uri =404;
+    include fastcgi_params;
+    fastcgi_param SCRIPT_FILENAME /var/www/html/backend/public/index.php;
+    fastcgi_param SCRIPT_NAME $fastcgi_script_name;
+    fastcgi_index index.php;
+    fastcgi_pass unix:/var/run/php-fpm/php-fpm.sock;
+}
+}
+```
+
+
+
 Here, we assume that the hostname is "https://pdns.example.com".
 
 To start the installation, open a browser and navigate to
