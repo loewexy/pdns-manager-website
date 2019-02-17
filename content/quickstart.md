@@ -14,7 +14,7 @@ stuff.
 
  * Install Apache
 
- * Use PHP in version 7.1 or above
+ * Use PHP in version 7.1 or above, and have the PHP apcu and json extension enabled
 
  * Make sure that you have PHP MySQL native driver installed and enabled
 
