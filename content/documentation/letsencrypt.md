@@ -94,7 +94,7 @@ used e.g. to restart a webserver using the certificate.
 
 Now you can issue
 ```bash
-./pdna-acme cron
+./pdns-acme cron
 ```
 to start the process. If there are no errors you will have a directory
 "certs" with your certificates.
