@@ -83,7 +83,6 @@ Afterwards open */etc/powerdns/pdns.conf* with an editor of your choice
 and enter the following:
 ```
 allow-axfr-ips=127.0.0.1 <ip of your secondary nameserver>
-allow-recursion=127.0.0.1
 config-dir=/etc/powerdns
 daemon=yes
 disable-axfr=no
