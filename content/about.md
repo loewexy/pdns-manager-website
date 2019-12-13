@@ -6,11 +6,6 @@ PDNS Manager is a project by Lukas Metzger
 
 If you have questions feel free to contact me at: developer{at}lukas-metzger{dot}com
 
-If you want to send an encrypted email you may use my [PGP Public Key](files/developer-lukas-metzger-com.gpg) with fingerprint
-```
-4DAA FCBD D826 3BBD CA9E  AD98 2FCA CB53 C238 06A1
-```
-
 ## Privacy Policy
 
 The use of this website is possible without any indication of personal data; however, if a data subject wants to use special services via our website, processing of personal data could become necessary. If the processing of personal data is necessary and there is no statutory basis for such processing, we generally obtain consent from the data subject.
