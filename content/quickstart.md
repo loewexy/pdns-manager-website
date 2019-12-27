@@ -44,7 +44,7 @@ an Apache VHost with a config like the following:
         RewriteEngine On
         RewriteCond %{REQUEST_FILENAME} !-f
         RewriteCond %{REQUEST_FILENAME} !-d
-        RewriteRule ^ index.php [QSA,L]
+        RewriteRule ^ /api/index.php [QSA,L]
     </Directory>
 
 </VirtualHost>
