@@ -49,6 +49,7 @@ an Apache VHost with a config like the following:
 
 </VirtualHost>
 ```
+_If you are using nginx, then please see [nginx configuration](nginx.yml) for details.
 
 Here, we assume that the hostname is "https://pdns.example.com".
 
