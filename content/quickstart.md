@@ -18,6 +18,8 @@ stuff.
 
  * Make sure that you have PHP MySQL native driver installed and enabled
 
+If you are using nginx, then please see [nginx configuration](documentation/nginx.md) for a sample configuration.
+
 ### Install PDNS Manager
 
 In order to install PDNS Manager, go to [Download](download.md) and get
@@ -49,7 +51,6 @@ an Apache VHost with a config like the following:
 
 </VirtualHost>
 ```
-_If you are using nginx, then please see [nginx configuration](documentation/nginx.md) for details.
 
 Here, we assume that the hostname is "https://pdns.example.com".
 

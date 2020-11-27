@@ -5,7 +5,7 @@ Nginx can also be used to proxy requsts to PDNS Manager, here is a template conf
 ```nginx
 server {
     listen 80;
-    server_name ns1.o.o;
+    server_name ns1.example.com;
 
     root <installation directory>/public;
 
@@ -32,4 +32,4 @@ server {
 }
 ```
 
-Make sure you update the PHP version to what you are running in the fastcgi_pass section above. Also note that [this wont work](https://github.com/loewexy/pdnsmanager/issues/81) in PHP older than 7.1.
+Make sure you update the PHP version to what you are running in the `fastcgi_pass` section above. Also note that [this wont work](https://github.com/loewexy/pdnsmanager/issues/81) in PHP older than 7.1.
