@@ -23,7 +23,7 @@ development release. Older releases can be found below.
 * Fixed deletion of password data when updating user
 * Fixed wrong client IP detection with Reverse Proxy
 
-[<p class="piwik_download">Download v2.0.1</p>](https://dl.pdnsmanager.org/pdnsmanager-2.0.1.tar.gz)
+[<p class="piwik_download">Download v2.1.0</p>](https://dl.pdnsmanager.org/pdnsmanager-2.1.0.tar.gz)
 
 #### 2.0.1
 ##### Bugfixes:
