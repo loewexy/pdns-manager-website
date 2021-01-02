@@ -6,11 +6,24 @@ Download the current release of PDNS Manager. It is recommended to use
 the current stable version, but you can also download the current
 development release. Older releases can be found below.
 
-[<button class="btn btn-success piwik_download">Stable v2.0.1</button>](https://dl.pdnsmanager.org/pdnsmanager-2.0.1.tar.gz)
+[<button class="btn btn-success piwik_download">Stable v2.1.0</button>](https://dl.pdnsmanager.org/pdnsmanager-2.1.0.tar.gz)
 [<button class="btn btn-danger piwik_download">Development</button>](https://dl.pdnsmanager.org/pdnsmanager-snapshot.tar.gz)
 
 
 ### Changelog
+
+#### 2.1.0
+##### Improvements:
+* Added Memcached plugin for session storage
+* Added LUA record type
+* Added version metadata to packaging
+* Clarification of some messages
+
+##### Bugfixes:
+* Fixed deletion of password data when updating user
+* Fixed wrong client IP detection with Reverse Proxy
+
+[<p class="piwik_download">Download v2.0.1</p>](https://dl.pdnsmanager.org/pdnsmanager-2.0.1.tar.gz)
 
 #### 2.0.1
 ##### Bugfixes:

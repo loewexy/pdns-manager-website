@@ -55,15 +55,7 @@ return [
     ...
 ];
 ```
-This configures how sessions are handeled in PDNS Manager.
-
-`plugin` chooses the plugin used as session storage backend, currently only
-`apcu`, which uses the available PHP-APCU extension.
-
-`timeout` configures how long a session without any further action will stay
-active. The value is an integer in seconds.
-
-`config` may store additional information used by the session storage plugin.
+This configures how sessions are handeled in PDNS Manager. For details see [Session Storage](configuration_sessionstorage.md).
 
 ### Authentication
 ```php
