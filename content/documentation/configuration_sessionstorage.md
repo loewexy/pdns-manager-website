@@ -1,4 +1,4 @@
-## Configuration - Authentication
+## Configuration - Sessionstorage
 
 PDNS Manager features a plugin system to support different session storage
 mechanisms.

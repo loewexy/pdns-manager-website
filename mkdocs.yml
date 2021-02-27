@@ -15,6 +15,7 @@ nav:
         - Let's Encrypt: "documentation/letsencrypt.md"
         - Configuration: "documentation/configuration.md"
         - Configuration - Authentication: "documentation/configuration_authentication.md"
+        - Configuration - Sessionstorage: "documentation/configuration_sessionstorage.md"
         - Upgrading from version 1.x: "documentation/upgrading-v1.md"
     - Download: "download.md"
     - About & Privacy: "about.md"
